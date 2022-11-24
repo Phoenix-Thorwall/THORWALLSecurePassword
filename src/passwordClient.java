@@ -26,8 +26,20 @@ public class passwordClient {
     */
         SecurePassword myPass = new SecurePassword(password);
 
-        myPass.isSecure();
+        if(!myPass.isSecure())
+        {
+            while (!myPass.isSecure())
+            {
+                System.out.println(myPass.status());
+                System.out.println("");
+                System.out.print("Please enter a stronger password:");
+                password = scanner.nextLine();
+                myPass.setPassword(password);
+            }
+
+        }
         System.out.println(myPass.status());
+
     }
 }
 

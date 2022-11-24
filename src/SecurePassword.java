@@ -56,23 +56,23 @@ public class SecurePassword {
         }
         else
         {
-            if (isLongEnough() == false)
+            if (!isLongEnough())
             {
                 errors += "Password is not long enough \n";
             }
-            if (containsUppercase() == false)
+            if (!containsUppercase())
             {
                 errors += "Password does not contain uppercase letters\n";
             }
-            if (containsLowercase() == false)
+            if (!containsLowercase())
             {
                 errors += "Password does not contain lowercase letters\n";
             }
-            if (containsDigit() == false)
+            if (!containsDigit())
             {
                 errors += "Password does not contain digits\n";
             }
-            if (containsSpecialSymbol() == false)
+            if (!containsSpecialSymbol())
             {
                 errors += "Password does not contain special characters\n";
             }
@@ -121,19 +121,15 @@ public class SecurePassword {
     /* Returns true if the password has at least one digit and false otherwise.
      */
     private boolean containsDigit() {
-        boolean bool = true;
+        boolean bool = false;
         String digits = "0123456789";
         String check = "";
         for (int i = 0; i < digits.length(); i++)
         {
-            check.equals(digits.charAt(i));
-            if (password.indexOf(check) > 0)
+            check = String.valueOf(digits.charAt(i));
+            if (password.indexOf(check) > -1)
             {
                 bool = true;
-            }
-            else
-            {
-                bool = false;
             }
         }
         return bool;
@@ -144,19 +140,15 @@ public class SecurePassword {
        ! @ # $ % ^ & * ?    and false otherwise.
      */
     private boolean containsSpecialSymbol() {
-        boolean bool = true;
+        boolean bool = false;
         String special = "!@#$%^&*?";
         String check = "";
         for (int i = 0; i < special.length(); i++)
         {
-            check.equals(special.charAt(i));
-            if (password.indexOf(check) > 0)
+            check = String.valueOf((special.charAt(i)));
+            if (password.indexOf(check) > -1)
             {
                 bool = true;
-            }
-            else
-            {
-                bool = false;
             }
         }
         return bool;
@@ -172,18 +164,14 @@ public class SecurePassword {
         characterString.
      */
     private boolean checkString(String characterString) {
-        boolean bool = true;
+        boolean bool = false;
         String check = "";
         for (int i = 0; i < characterString.length(); i++)
         {
-            check.equals(characterString.charAt(i));
-            if (password.indexOf(check) > 0)
+            check = String.valueOf((characterString.charAt(i)));
+            if (password.indexOf(check) > -1)
             {
                 bool = true;
-            }
-            else
-            {
-                bool = false;
             }
         }
         return bool;
