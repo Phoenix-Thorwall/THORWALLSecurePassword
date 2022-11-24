@@ -25,6 +25,9 @@ public class passwordClient {
        password in your SecurePassword object using the setter method, .setPassword(),
     */
         SecurePassword myPass = new SecurePassword(password);
+
+        myPass.isSecure();
+        System.out.println(myPass.status());
     }
 }
 

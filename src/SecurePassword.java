@@ -22,9 +22,14 @@ public class SecurePassword {
        Return false if any of the above security requirements are not fulfilled.
     */
     public boolean isSecure() {
-        /* to be implemented */
-        // You should first write the six private "helper" methods
-        // below and use them as needed in this method’s implementation
+        if (isLongEnough() && containsUppercase() && containsLowercase() && containsDigit() && containsSpecialSymbol())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 
@@ -43,10 +48,36 @@ public class SecurePassword {
         The password must contain a special symbol: ! @ # $ % ^ & * ?"
     */
     public String status() {
-        /* to be implemented */
-
-        // You should first write the six private "helper" methods
-        // below and use them as needed in this method’s implementation
+        String errors = "";
+        String secure = "Password is secure";
+        if (isSecure())
+        {
+            return secure;
+        }
+        else
+        {
+            if (isLongEnough() == false)
+            {
+                errors += "Password is not long enough \n";
+            }
+            if (containsUppercase() == false)
+            {
+                errors += "Password does not contain uppercase letters\n";
+            }
+            if (containsLowercase() == false)
+            {
+                errors += "Password does not contain lowercase letters\n";
+            }
+            if (containsDigit() == false)
+            {
+                errors += "Password does not contain digits\n";
+            }
+            if (containsSpecialSymbol() == false)
+            {
+                errors += "Password does not contain special characters\n";
+            }
+            return errors;
+        }
     }
 
 
@@ -59,9 +90,13 @@ public class SecurePassword {
      */
     private boolean isLongEnough()
     {
-        if (password.length() < 8)
+        if (password.length() <= 8)
         {
-
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 
@@ -78,14 +113,30 @@ public class SecurePassword {
     /* Returns true if the password has at least one lowercase letter and false otherwise.
      */
     private boolean containsLowercase() {
-        /* to be implemented */
+        String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
+        return checkString(lowerCaseLetters);
     }
 
 
     /* Returns true if the password has at least one digit and false otherwise.
      */
     private boolean containsDigit() {
-        /* to be implemented */
+        boolean bool = true;
+        String digits = "0123456789";
+        String check = "";
+        for (int i = 0; i < digits.length(); i++)
+        {
+            check.equals(digits.charAt(i));
+            if (password.indexOf(check) > 0)
+            {
+                bool = true;
+            }
+            else
+            {
+                bool = false;
+            }
+        }
+        return bool;
     }
 
 
@@ -93,7 +144,22 @@ public class SecurePassword {
        ! @ # $ % ^ & * ?    and false otherwise.
      */
     private boolean containsSpecialSymbol() {
-        /* to be implemented */
+        boolean bool = true;
+        String special = "!@#$%^&*?";
+        String check = "";
+        for (int i = 0; i < special.length(); i++)
+        {
+            check.equals(special.charAt(i));
+            if (password.indexOf(check) > 0)
+            {
+                bool = true;
+            }
+            else
+            {
+                bool = false;
+            }
+        }
+        return bool;
     }
 
     /* Checks characterString to see if password contains at least one
@@ -106,7 +172,21 @@ public class SecurePassword {
         characterString.
      */
     private boolean checkString(String characterString) {
-        /* to be implemented */
+        boolean bool = true;
+        String check = "";
+        for (int i = 0; i < characterString.length(); i++)
+        {
+            check.equals(characterString.charAt(i));
+            if (password.indexOf(check) > 0)
+            {
+                bool = true;
+            }
+            else
+            {
+                bool = false;
+            }
+        }
+        return bool;
     }
 }
 
